@@ -2,12 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Supportify</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <title>Supportify .NET Core Components</title>
-        <authors>jordanyaker</authors>
+        <authors>Jordan Yaker</authors>
         <owners>Supportify.io</owners>
         <projectUrl>https://github.com/supportify/supportify-net</projectUrl>
-        <iconUrl>https://www.supportify.io/content/images/logo_small.png</iconUrl>
+        <iconUrl>https://www.supportify.io/content/images/logo_medium.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>The core API access and authentication components necessary for interacting with Supportify.io from a .NET application.</description>
         <copyright>Copyright © 2013 Inventive Minds, LLC.</copyright>
