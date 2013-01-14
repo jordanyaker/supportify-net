@@ -2,11 +2,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using RestSharp;
     using System.Net;
-    using ServiceStack.Text;
     using System.Web;
+    using RestSharp;
+    using ServiceStack.Text;
 
     /// <summary>
     /// The proxy class for interfacing with the Supportify REST API.
@@ -95,7 +94,7 @@
             string description = "retrieve the specified Category";
             string key = "category";
 
-            var category = this.MakeRequest<Category>(resource, key, Method.GET, description);
+            var category = this.MakeGetRequest<Category>(resource, key, description);
             return category;
         }
         /// <summary>
@@ -129,7 +128,7 @@
                 resource += ("?" + queryString);
             }
 
-            var categories = this.MakeRequest<IEnumerable<Category>>(resource, key, Method.GET, description);
+            var categories = this.MakeGetRequest<IEnumerable<Category>>(resource, key, description);
             return categories;
         }
         /// <summary>
@@ -142,7 +141,7 @@
             string description = "retrieve the specified FAQ";
             string key = "faq";
 
-            var faq = this.MakeRequest<Faq>(resource, key, Method.GET, description);
+            var faq = this.MakeGetRequest<Faq>(resource, key, description);
             return faq;
         }
         /// <summary>
@@ -184,7 +183,7 @@
                 resource += ("?" + queryString);
             }
 
-            var faqs = this.MakeRequest<IEnumerable<Faq>>(resource, key, Method.GET, description);
+            var faqs = this.MakeGetRequest<IEnumerable<Faq>>(resource, key, description);
             return faqs;
         }
         /// <summary>
@@ -196,7 +195,7 @@
             string description = "retrieve the API info";
             string key = "info";
 
-            var info = this.MakeRequest<Info>(resource, key, Method.GET, description);
+            var info = this.MakeGetRequest<Info>(resource, key, description);
             return info;
         }
         /// <summary>
@@ -209,7 +208,7 @@
             string description = "retrieve the specified Tag";
             string key = "tag";
 
-            var tag = this.MakeRequest<Tag>(resource, key, Method.GET, description);
+            var tag = this.MakeGetRequest<Tag>(resource, key, description);
             return tag;
         }
         /// <summary>
@@ -243,8 +242,19 @@
                 resource += ("?" + queryString);
             }
 
-            var tags = this.MakeRequest<IEnumerable<Tag>>(resource, key, Method.GET, description);
+            var tags = this.MakeGetRequest<IEnumerable<Tag>>(resource, key, description);
             return tags;
+        }
+        /// <summary>
+        /// Votes for a <see cref="T:Supportify.Faq"/> with an ID that matches the supplied value.
+        /// </summary>
+        /// <param name="id">The unique identifier of the <see cref="T:Supportify.Faq"/> to be retrieved.</param>
+        /// <param name="vote">The direction of the vote from the user.</param>
+        public void PostFaqVote(long id, VoteTypes vote) {
+            string resource = string.Format("faqs/{0}?vote={1}", id, vote);
+            string description = "submit a vote for the specified FAQ";
+
+            this.MakePostRequest(resource, description);
         }
 
         internal JsonSerializer<Dictionary<string, T>> GetJsonSerializer<T>() {
@@ -255,20 +265,33 @@
 
             return (JsonSerializer<Dictionary<string, T>>)_serializers[type];
         }
-        internal T MakeRequest<T>(string resource, string key, Method method, string description = "") {
-            var request = new RestRequest(resource);
+        internal T MakeGetRequest<T>(string resource, string key, string description = "") {
+            var request = new RestRequest(resource, Method.GET);
             IRestResponse response = this.Client.Execute(request);
 
             if (response.ErrorException != null) {
                 var message = string.Format(UNEXPECTED_EXCEPTION, description);
                 throw new SupportifyException(message, response.ErrorException);
-            } else if (response.StatusCode == HttpStatusCode.Forbidden) {
+            } else if (response.StatusCode == HttpStatusCode.Unauthorized) {
                 var message = string.Format(AUTHENTICATION_EXCEPTION, description);
-                throw new SupportifyAuthenticationException(message, response.ErrorException);
+                throw new SupportifyAuthenticationException(message);
             }
 
-            var deserialized = this.GetJsonSerializer<T>().DeserializeFromString(response.Content);
+            var deserialized = this.GetJsonSerializer<T>()
+                .DeserializeFromString(response.Content);
             return deserialized[key];
+        }
+        internal void MakePostRequest(string resource, string description = "") {
+            var request = new RestRequest(resource, Method.POST);
+            IRestResponse response = this.Client.Execute(request);
+
+            if (response.ErrorException != null) {
+                var message = string.Format(UNEXPECTED_EXCEPTION, description);
+                throw new SupportifyException(message, response.ErrorException);
+            } else if (response.StatusCode == HttpStatusCode.Unauthorized) {
+                var message = string.Format(AUTHENTICATION_EXCEPTION, description);
+                throw new SupportifyAuthenticationException(message);
+            }
         }
     }
 }

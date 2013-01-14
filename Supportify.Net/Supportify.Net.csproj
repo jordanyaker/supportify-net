@@ -8,8 +8,8 @@
     <ProjectGuid>{666CB5F6-B596-4D2E-B3B0-D3A7A2AD3E97}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Supportify.Net</RootNamespace>
-    <AssemblyName>Supportify.Net</AssemblyName>
+    <RootNamespace>Supportify</RootNamespace>
+    <AssemblyName>Supportify</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Enums\VoteTypes.cs" />
     <Compile Include="Proxy\ISupportifyProxy.cs" />
     <Compile Include="Proxy\SupportifyProxy.cs" />
     <Compile Include="Domain\Enums\SortOrders.cs" />
