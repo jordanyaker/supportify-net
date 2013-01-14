@@ -1,5 +1,6 @@
 ﻿namespace Supportify.Net.Tests.Security {
     using Machine.Specifications;
+    using Supportify.Help;
 
     public class SupportifyCredentials_specification {
         static string _appKey, _apiKey;

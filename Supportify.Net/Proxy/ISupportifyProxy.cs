@@ -1,4 +1,4 @@
-﻿namespace Supportify {
+﻿namespace Supportify.Help {
     using System.Collections.Generic;
     using RestSharp;
 
@@ -63,6 +63,6 @@
         /// </summary>
         /// <param name="id">The unique identifier of the <see cref="T:Supportify.Faq"/> to be retrieved.</param>
         /// <param name="vote">The direction of the vote from the user.</param>
-        public void PostFaqVote(long id, VoteTypes vote);
+        void PostFaqVote(long id, VoteTypes vote);
     }
 }

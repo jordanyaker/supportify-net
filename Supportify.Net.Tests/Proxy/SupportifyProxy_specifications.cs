@@ -1,4 +1,4 @@
-﻿namespace Supportify.Core.Tests {
+﻿namespace Supportify.Net.Tests {
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -7,6 +7,7 @@
     using Machine.Specifications;
     using RestSharp;
     using ServiceStack.Text;
+    using Supportify.Help;
 
     public class SupportifyProxy_specifications : WithFakes {
         static SupportifyProxy _proxy;
@@ -194,7 +195,7 @@
 
         [Subject("SupportifyProxy specification")]
         public class when_making_a_post_request {
-            static string _resource, _key, _description;
+            static string _resource, _description;
             static IRestResponse _response;
 
             Establish context = () => {

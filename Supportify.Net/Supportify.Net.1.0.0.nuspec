@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Supportify</id>
+        <version>1.0.0</version>
+        <title>Supportify .NET Core Components</title>
+        <authors>jordanyaker</authors>
+        <owners>Supportify.io</owners>
+        <projectUrl>https://github.com/supportify/supportify-net</projectUrl>
+        <iconUrl>https://www.supportify.io/content/images/logo_small.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>The core API access and authentication components necessary for interacting with Supportify.io from a .NET application.</description>
+        <copyright>Copyright © 2013 Inventive Minds, LLC.</copyright>
+        <language>en-US</language>
+        <tags>help support Supportify api rest</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework4.0">
+                <dependency id="RestSharp" version="104.1" />
+                <dependency id="ServiceStack.Text" version="3.9.33" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\Supportify.Help.dll" target="lib\net40\Supportify.Help.dll" />
+        <file src="bin\Release\Supportify.Help.pdb" target="lib\net40\Supportify.Help.pdb" />
+        <file src="bin\Release\Supportify.Help.XML" target="lib\net40\Supportify.Help.XML" />
+    </files>
+</package>

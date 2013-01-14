@@ -1,4 +1,4 @@
-﻿namespace Supportify {
+﻿namespace Supportify.Help {
     /// <summary>
     /// A class for managing the access credentials necessary to retrieve data from the Supportify API.
     /// </summary>

@@ -1,4 +1,4 @@
-﻿namespace Supportify {
+﻿namespace Supportify.Help {
     using System;
     using System.Collections.Generic;
     using System.Linq;
