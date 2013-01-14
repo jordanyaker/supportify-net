@@ -1,10 +1,25 @@
 ﻿namespace Supportify {
     using System.Collections.Generic;
+    using RestSharp;
 
     /// <summary>
     /// The proxy class for interfacing with the Supportify REST API.
     /// </summary>
     public interface ISupportifyProxy {
+        /// <summary>
+        /// Gets the current <see cref="T:Supportify.ISupportifyCredentials"/> for use during the proxy session.
+        /// </summary>
+        ISupportifyCredentials Credentials { get; }
+        /// <summary>
+        /// Gets the current REST client used for interactions with the Supportify API.
+        /// </summary>
+        IRestClient Client {get;}
+        /// <summary>
+        /// Gets the current version of the API that the proxy is interfacing with
+        /// </summary>
+        VersionTypes Version { get; }
+
+        
         /// <summary>
         /// Retrieves the <see cref="T:Supportify.Category"/> with an ID that matches the supplied value.
         /// </summary>

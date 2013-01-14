@@ -48,8 +48,8 @@
             get {
                 if (_client == null) {
                     string url = string.Format(API_BASE_URL, Version);
-
                     _client = new RestClient(url);
+
                     _client.AddDefaultHeader("X-Supportify-ApiKey", Credentials.ApiKey);
                     _client.AddDefaultHeader("X-Supportify-AppKey", Credentials.AppKey);
                 }
