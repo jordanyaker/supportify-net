@@ -58,5 +58,11 @@
         /// </summary>
         /// <returns>The collection of <see cref="T:Supportify.Tag"/> entries that match the supplied parameters.</returns>
         IEnumerable<Tag> GetTags(int limit = 0, int skip = 0, TagProperties sortProperty = 0, SortOrders sortOrder = 0);
+        /// <summary>
+        /// Votes for a <see cref="T:Supportify.Faq"/> with an ID that matches the supplied value.
+        /// </summary>
+        /// <param name="id">The unique identifier of the <see cref="T:Supportify.Faq"/> to be retrieved.</param>
+        /// <param name="vote">The direction of the vote from the user.</param>
+        public void PostFaqVote(long id, VoteTypes vote);
     }
 }
