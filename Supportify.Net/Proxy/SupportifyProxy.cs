@@ -11,7 +11,7 @@
     /// The proxy class for interfacing with the Supportify REST API.
     /// </summary>
     public class SupportifyProxy : ISupportifyProxy, IDisposable {
-        static readonly string API_BASE_URL = "https://api.supportify.io/{0}/";
+        static readonly string API_BASE_URL = "https://supportify.io/api/{0}/";
         static readonly string AUTHENTICATION_EXCEPTION = "An authentication error occurred while attempting to {0}.";
         static readonly string UNEXPECTED_EXCEPTION = "An unexpected exception occurred while attempting to {0}.";
         bool _disposed = false;
